@@ -1,6 +1,6 @@
 // content script
-// chrome.extension.sendRequest({
 chrome.runtime.sendMessage({
+  //sends message to own extension by default, or else add ID here
   "action": "getOptions",
   "args": []
 }, function(response){
@@ -24,7 +24,7 @@ chrome.runtime.sendMessage({
     console.log(document.location.href)
     if (document.location.href.match(new RegExp(q['url']))){
       console.log('entered if loop')
-      $(q['query']).val(q['value']);
+      $(q['query']).val(q['value']); //this line makes change to DOM
     }
   }
 });
