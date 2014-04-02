@@ -1,5 +1,6 @@
 // content script
-chrome.extension.sendRequest({
+// chrome.extension.sendRequest({
+chrome.runtime.sendMessage({
   "action": "getOptions",
   "args": []
 }, function(response){
