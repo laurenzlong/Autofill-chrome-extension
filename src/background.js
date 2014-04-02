@@ -1,5 +1,3 @@
-// 汎用的に使えるように
-// ref. http://d.hatena.ne.jp/umezo/20091115/1258291572
 var core = {
   /**
    * 
@@ -9,7 +7,6 @@ var core = {
     console.log('getOptions', localStorage);
     return localStorage;
   },
-  // 通信したい
 }
 
 window.onload = function(){
@@ -19,8 +16,12 @@ window.onload = function(){
    *   args: [a, b, c, ...]
    * }
    **/
-  chrome.extension.onRequest.addListener(function(request, sender, sendResponse){
+  chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+    console.log(sendResponse)
+    console.log(request)
+    console.log(sender)
     var ret = (core[request.action] || function(){}).apply(this, request.args);
+    console.log(ret)
     sendResponse(ret);
   });
 }
